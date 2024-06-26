@@ -11,7 +11,7 @@ public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
     private CepService cepService;
-    private String querContinuar = "1";
+    private String querContinuar;
 
     public Menu(CepService cepService){
         this.cepService = cepService;
@@ -20,7 +20,7 @@ public class Menu {
     public void executaMenu(){
         imprimeCabecalho();
 
-        while (querContinuar.equals("1")) {
+        do {
             System.out.println("\nInforme o CEP que deseja consultar:");
             System.out.println("CEP deve ter 8 números, sem espaços ou caracteres, por exemplo: 00000000");
             String numeroCep = scanner.nextLine().trim();
@@ -33,7 +33,7 @@ public class Menu {
 
             System.out.println("\nTecle 1 para consultar outro CEP ou qualquer outra tecla para sair.");
             querContinuar = scanner.nextLine().trim();
-        }
+        } while (querContinuar.equals("1"));
 
         cepService.geraRelatorio();
         System.out.println("Fim da execução do programa.");
